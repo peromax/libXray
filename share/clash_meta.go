@@ -400,10 +400,12 @@ func (proxy ClashProxy) streamSettings(outbound conf.OutboundDetourConfig) (*con
 		hysteriaSettings.Version = 2
 		hysteriaSettings.Auth = proxy.Password
 		if len(proxy.Up) > 0 {
-			hysteriaSettings.Up = conf.Bandwidth(proxy.Up)
+			upBandwidth := conf.Bandwidth(proxy.Up)
+			hysteriaSettings.Up = &upBandwidth
 		}
 		if len(proxy.Down) > 0 {
-			hysteriaSettings.Down = conf.Bandwidth(proxy.Down)
+			downBandwidth := conf.Bandwidth(proxy.Down)
+			hysteriaSettings.Down = &downBandwidth
 		}
 		if len(proxy.Ports) > 0 {
 			udpHop := conf.UdpHop{}
@@ -419,7 +421,7 @@ func (proxy ClashProxy) streamSettings(outbound conf.OutboundDetourConfig) (*con
 
 			udpHop.Interval = &interval
 
-			hysteriaSettings.UdpHop = udpHop
+			hysteriaSettings.UdpHop = &udpHop
 		}
 		streamSettings.HysteriaSettings = hysteriaSettings
 		// udpmasks

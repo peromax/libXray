@@ -194,7 +194,7 @@ class AppleGoBuilder(Builder):
             ldflags += f" -X 'main.buildVersion={fake_hash}'"
 
         # Add random unused variables to change binary fingerprint
-        for i in range(5):
+        for i in range(1):
             var_name = f"unusedVar{i}"
             var_value = "".join(
                 random.choices(
@@ -205,7 +205,7 @@ class AppleGoBuilder(Builder):
             ldflags += f" -X 'main.{var_name}={var_value}'"
 
         # Use compatible optimization flags
-        gcflags = "all=-l=4"  # Limit inlining but keep other optimizations
+        # gcflags = "all=-l=4"  # Limit inlining but keep other optimizations
 
         cmd = [
             "go",
@@ -213,8 +213,6 @@ class AppleGoBuilder(Builder):
             "-trimpath",  # Remove all file system paths
             "-ldflags",
             ldflags,
-            "-gcflags",
-            gcflags,
             f"-o={output_file}",
             "-buildmode=c-archive",
         ]

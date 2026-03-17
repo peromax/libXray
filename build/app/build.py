@@ -9,7 +9,7 @@ from app.cmd import (
     delete_dir_if_exists,
 )
 
-XRAY_CORE_REPO = "https://github.com/XTLS/Xray-core.git"
+XRAY_CORE_REPO = "https://github.com/peromax/Xray-core.git"
 XRAY_CORE_VERSION = "v26.2.6"
 XRAY_CORE_DIR_NAME = "Xray-core-libXray"
 LIBXRAY_MOD_NAME = "github.com/xtls/libxray"
@@ -40,8 +40,6 @@ class Builder(object):
                 "clone",
                 "--depth",
                 "1",
-                "--branch",
-                XRAY_CORE_VERSION,
                 XRAY_CORE_REPO,
                 xray_core_dir,
             ]
@@ -132,7 +130,7 @@ class Builder(object):
     def before_build(self):
         self.clone_xray_core()
         self.init_go_env()
-        self.download_geo()
+        # self.download_geo()
 
     def build(self):
         pass
