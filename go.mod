@@ -49,3 +49,7 @@ require (
 	gvisor.dev/gvisor v0.0.0-20260122175437-89a5d21be8f0 // indirect
 	lukechampine.com/blake3 v1.4.1 // indirect
 )
+
+replace github.com/refraction-networking/utls => github.com/peromax/utls v1.8.2
+
+replace github.com/xtls/reality => github.com/peromax/reality v0.0.0-20260319155839-54467d96cf29

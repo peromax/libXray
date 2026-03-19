@@ -150,6 +150,7 @@ class AppleGoBuilder(Builder):
         min_version_flag = f"-m{sdk}-version-min={min_version}"
         flags = f"-isysroot {sdk_path} {min_version_flag} -arch {apple_arch}"
         run_env = os.environ.copy()
+        run_env["GODEBUG"] = "tlsmlkem=0"  # <--- remove MLKEM it is consume memory and CPU on iOS
         run_env["GOOS"] = platform
         run_env["GOARCH"] = go_arch
         run_env["GOFLAGS"] = f"-tags={platform}"
