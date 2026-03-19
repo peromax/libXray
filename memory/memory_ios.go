@@ -3,6 +3,7 @@
 package memory
 
 import (
+	"os"
 	"runtime/debug"
 	"runtime"
 
@@ -25,6 +26,8 @@ const (
 // }
 
 func InitForceFree() {
+	os.Setenv("GODEBUG", "tlsmlkem=0")
+
 	debug.SetGCPercent(10)
 	debug.SetMemoryLimit(maxMemory)
 	// set golang threads num
